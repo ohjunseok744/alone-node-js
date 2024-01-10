@@ -10,32 +10,21 @@
   
 </head>
 <body style="background-color: gainsboro;">
-  <%- include('nav.ejs') %>
-  <input class="search">
-  <button class="search-send">검색</button> 
-  <h3><%= user.username%>님 안녕하세요</h3>
+  <%- include('nav.ejs') %> 
+  <h3><%= user.username%>님의 체팅방</h3>
   <p class="lgout">로그아웃</p>
   <div class="white-box">
     <% for (var i = 0; i < post.length; i++){ %>
       <div class="list-box">
-        <a href="/detail/<%= post[i]._id %>"><%= post[i].title %></a>
-        <p><%= post[i].content %></p>
+        <a href="/detail/<%= post[i]._id %>"><%= post[i].parentname %></a>
         
         <div class="edit-delete-container">
-          <a href="/edit/<%= post[i]._id %>" id="edit">수정</a>
           <span class="delete" data-id="<%= post[i]._id %>">🗑️</span>
-          <p><%= post[i].username %>작성</p>
-          <form id="chatForm_<%= post[i]._id %>" action="/chat" method="POST">
-            <input name="parentId" value="<%= post[i]._id %>" style="display: none">
-            <input name="par_name" value="<%= post[i].username %>" style="display: none">
-            <button type="submit">체팅방 추가</button>
-          </form>
+          
           
         </div>
       </div>
     <% } %> 
-    <a class="btn btn-primary" href="/write" role="button">추가</a>
-    
   </div>
 
   <script>
